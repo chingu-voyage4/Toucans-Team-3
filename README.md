@@ -1,2 +1,19 @@
-# Toucans-Team-3
-Voyage-4
+# Crypto Index Fund
+
+A clean, simple investment planner which calculates US dollars into a user-friendly guide which covers the current top 20 cryptocurrencies.
+
+## Built With
+
+* HTML: PUG preprocessor
+* CSS: Sass preprocessor
+* JS: Javascript vanilla ES6 & jQuery
+* Task runner: Gulp
+* Debug: Chrome DevTools
+* Text editor: Visual Studio Code
+* Version Control: Git
+
+## Team
+<ul>
+  <li>@FancyAction (Project Manager)</li>
+  <li>@Karthik</li>
+</ul>
