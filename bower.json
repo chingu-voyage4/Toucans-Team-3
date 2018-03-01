@@ -1,0 +1,22 @@
+{
+  "name": "Team-3",
+  "description": "A clean, simple investment planner which calculates US dollars into a user-friendly guide which covers the current top 20 cryptocurrencies.",
+  "main": "gulpfile.js",
+  "authors": [
+    "fancyaction <labcoatdisaster@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/chingu-voyage4/Toucans-Team-3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.0.0"
+  }
+}
