@@ -16,4 +16,9 @@ A clean, simple investment planner which calculates US dollars into a user-frien
 <ul>
   <li>@FancyAction (Project Manager)</li>
   <li>@Karthik</li>
+  <li>@Sparta</li>
+  <li>@Tony</li>
+
 </ul>
+
+<a href=https://github.com/chingu-voyage4/Toucans-Team-3/wiki/Members>Read more about us on our wiki!</a>
