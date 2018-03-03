@@ -13,7 +13,9 @@ var pug                = require('gulp-pug');
 var rename             = require("gulp-rename");
 var sass               = require('gulp-sass');
 var sourcemaps         = require('gulp-sourcemaps');
-var uglify             = require('gulp-uglify');
+const babel = require('gulp-babel');
+let uglify = require('gulp-uglify-es').default;
+
 // sudo npm install gulp-uglify browser-sync gulp-plumber gulp-autoprefixer gulp-sass gulp-pug gulp-imagemin gulp-cache gulp-clean-css gulp-sourcemaps gulp-concat beeper gulp-util gulp-rename gulp-notify --save-dev
 var jsVendorFiles      = [];             // Holds the js vendor files to be concatenated
 var myJsFiles          = ['js/*.js'];    // Holds the js files to be concatenated
@@ -179,4 +181,11 @@ gulp.task('watch', function() {
   });
 
   gulp.watch(['build/**'], browserSync.reload);
+});
+
+gulp.task("uglify", function () {
+  return gulp.src("lib/bundle.js")
+      .pipe(rename("bundle.min.js"))
+      .pipe(uglify(/* options */))
+      .pipe(gulp.dest("lib/"));
 });
