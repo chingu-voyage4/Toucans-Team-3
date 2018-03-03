@@ -13,7 +13,6 @@ var pug                = require('gulp-pug');
 var rename             = require("gulp-rename");
 var sass               = require('gulp-sass');
 var sourcemaps         = require('gulp-sourcemaps');
-const babel = require('gulp-babel');
 let uglify = require('gulp-uglify-es').default;
 
 // sudo npm install gulp-uglify browser-sync gulp-plumber gulp-autoprefixer gulp-sass gulp-pug gulp-imagemin gulp-cache gulp-clean-css gulp-sourcemaps gulp-concat beeper gulp-util gulp-rename gulp-notify --save-dev
