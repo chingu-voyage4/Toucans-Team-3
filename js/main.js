@@ -38,6 +38,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
      * @param {currencies} Array array of currencies data  
      */
     function buildTable( currencies ) {
+        // Add fiat to thead
+        document.querySelectorAll('.fiat').forEach((item) => item.textContent = ` (${fiat[1]})`);
+        // document.querySelectorAll('.fiat')[0].textContent = ` (${fiat[1]})`;
+        // document.querySelectorAll('.fiat')[1].textContent = ` (${fiat[1]})`;
         allCurrencies = currencies
         const tableColumns = [ 'rank', 'name', 'market_cap_usd', 'price_usd', 'investment' ]
         let tbody = document.createElement( 'tbody' );
