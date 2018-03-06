@@ -3,7 +3,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
     // ===== GLOBALS ===== //
     let investAmount    = 0;
     let allCurrencies   = [];
-    let fiat = ['$', 'USD'];
+    let fiat            = ['$', 'USD'];
+    const C1            = [ 13.4, 12.3, 10.5, 10.2, 9.2, 
+                            7.6, 5.4, 4.9, 4.3, 4, 
+                            3.8, 3.4, 2.1, 1.7, 1.5, 
+                            1.5, 1.2, 1.2, 0.9, 0.9 ];
+
 
 
     // ===== Put all DOM targetting here ===== //
@@ -40,24 +45,22 @@ document.addEventListener( 'DOMContentLoaded', () => {
     function buildTable( currencies ) {
         // Add fiat to thead
         document.querySelectorAll('.fiat').forEach((item) => item.textContent = ` (${fiat[1]})`);
-        // document.querySelectorAll('.fiat')[0].textContent = ` (${fiat[1]})`;
-        // document.querySelectorAll('.fiat')[1].textContent = ` (${fiat[1]})`;
+       
         allCurrencies = currencies
         const tableColumns = [ 'rank', 'name', 'market_cap_usd', 'price_usd', 'investment' ]
         let tbody = document.createElement( 'tbody' );
-        currencies.forEach( cur => {
+        currencies.forEach( ( cur, index ) => {
 
             let tr = document.createElement( 'tr');
             tableColumns.forEach( col => {
-                let td = document.createElement( 'td' );   
+                let td = document.createElement( 'td' );
                 let cellData = cur[col]
                 
-                // is the column for investment? 
-                // if yes, calculate investment for columnif not, is the column for market cap or price?
                 td.textContent = col === 'investment' 
-                    ? calculateInvestment( investAmount )
-                    : ( col === 'market_cap_usd' || col === 'price_usd' ) ? formatNum( cellData )
-                    : cellData
+                    ? calculateInvestment( C1[index] )
+                    : ( col === 'market_cap_usd' || col === 'price_usd' ) 
+                        ? formatNum( cellData )
+                        : cellData
 
                 tr.appendChild( td );
             } )
@@ -66,6 +69,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         } )
         currencyTable.appendChild( tbody )
     };
+
 
     /**
      * 
@@ -94,12 +98,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     /**
      * 
-     * @param {value} Number 
+     * @param {value} Number currency's index percentage
      * @returns {Number} 
      */
     function calculateInvestment( value ) {
         // ===== Need to figure out the calculations here ===== //
-        return value * 2; 
+        let amount = investAmount * value / 100;
+        investAmount = investAmount - amount;
+        return formatNum( amount ); 
     }
 
 
