@@ -4,12 +4,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
     let investAmount    = 0;
     let allCurrencies   = [];
     let fiat            = ['$', 'USD'];
-    const index1        = {
-        BTC: 13.4, ETH: 12.3, XRP: 10.5, BCH: 10.2, LTC: 9.2, 
-        ADA: 7.6, NEO: 5.4, XLM: 4.9, XMR: 4.3, EOS: 4, 
-        MIOTA: 3.8, DASH: 3.4, XEM: 2.1, TRX: 1.7, ETC: 1.5, 
-        USDT: 1.5, VEN: 1.2, QTUM: 1.2, NANO: 0.9, LSK: 0.9
-    };
+    const C1            = [ 13.4, 12.3, 10.5, 10.2, 9.2, 
+                            7.6, 5.4, 4.9, 4.3, 4, 
+                            3.8, 3.4, 2.1, 1.7, 1.5, 
+                            1.5, 1.2, 1.2, 0.9, 0.9 ];
 
 
 
@@ -51,7 +49,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         allCurrencies = currencies
         const tableColumns = [ 'rank', 'name', 'market_cap_usd', 'price_usd', 'investment' ]
         let tbody = document.createElement( 'tbody' );
-        currencies.forEach( cur => {
+        currencies.forEach( ( cur, index ) => {
 
             let tr = document.createElement( 'tr');
             tableColumns.forEach( col => {
@@ -59,7 +57,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 let cellData = cur[col]
                 
                 td.textContent = col === 'investment' 
-                    ? calculateInvestment( cur.symbol )
+                    ? calculateInvestment( C1[index] )
                     : ( col === 'market_cap_usd' || col === 'price_usd' ) 
                         ? formatNum( cellData )
                         : cellData
@@ -100,12 +98,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     /**
      * 
-     * @param {value} String currency's symbol value
+     * @param {value} Number currency's index percentage
      * @returns {Number} 
      */
     function calculateInvestment( value ) {
         // ===== Need to figure out the calculations here ===== //
-        let amount = investAmount * index1[value] / 100;
+        let amount = investAmount * value / 100;
         investAmount = investAmount - amount;
         return formatNum( amount ); 
     }
