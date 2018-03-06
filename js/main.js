@@ -4,7 +4,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
     let investAmount    = 0;
     let allCurrencies   = [];
     let fiat            = ['$', 'USD'];
-    const C1            = [ 13.4, 12.3, 10.5, 10.2, 9.2, 
+    const c20Index      = [ 13.4, 12.3, 10.5, 10.2, 9.2, 
                             7.6, 5.4, 4.9, 4.3, 4, 
                             3.8, 3.4, 2.1, 1.7, 1.5, 
                             1.5, 1.2, 1.2, 0.9, 0.9 ];
@@ -49,7 +49,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         allCurrencies = currencies
         const tableColumns = [ 'rank', 'name', 'market_cap_usd', 'price_usd', 'investment' ]
         let tbody = document.createElement( 'tbody' );
-        currencies.forEach( ( cur, index ) => {
+        currencies.forEach( ( cur, coin ) => {
 
             let tr = document.createElement( 'tr');
             tableColumns.forEach( col => {
@@ -57,7 +57,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 let cellData = cur[col]
                 
                 td.textContent = col === 'investment' 
-                    ? calculateInvestment( C1[index] )
+                    ? calculateInvestment( c20Index[coin] )
                     : ( col === 'market_cap_usd' || col === 'price_usd' ) 
                         ? formatNum( cellData )
                         : cellData
