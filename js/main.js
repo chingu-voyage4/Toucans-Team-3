@@ -46,24 +46,18 @@ document.addEventListener( 'DOMContentLoaded', () => {
         // Add fiat to thead
         document.querySelectorAll('.fiat').forEach((item) => item.textContent = ` (${fiat[1]})`);
        
-        allCurrencies = currencies
-        const tableColumns = [ 'rank', 'name', 'market_cap_usd', 'price_usd', 'investment' ]
+        allCurrencies = currencies;
         let tbody = document.createElement( 'tbody' );
         currencies.forEach( ( cur, coin ) => {
 
-            let tr = document.createElement( 'tr');
-            tableColumns.forEach( col => {
-                let td = document.createElement( 'td' );
-                let cellData = cur[col]
-                
-                td.textContent = col === 'investment' 
-                    ? calculateInvestment( c20Index[coin] )
-                    : ( col === 'market_cap_usd' || col === 'price_usd' ) 
-                        ? formatNum( cellData )
-                        : cellData
-
-                tr.appendChild( td );
-            } )
+            let tr = document.createElement( 'tr' );
+            tr.innerHTML = `
+                    <td>${ cur.rank }</td>
+                    <td>${ cur.name }</td>
+                    <td>${ formatNum( cur.market_cap_usd ) }</td>
+                    <td>${ formatNum( cur.price_usd ) }</td>
+                    <td>${ calculateInvestment( c20Index[coin] ) }</td>
+            `;
             tbody.appendChild( tr )
             
         } )
