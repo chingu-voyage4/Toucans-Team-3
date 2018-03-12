@@ -86,7 +86,7 @@ function findKeyText(data, txt) {
 }
 
 gulp.task('styles', function() {
-  gulp.src('styles/*.scss')
+  gulp.src('styles/main.sass')
   .pipe(plumber({ errorHandler: onError }))
   .pipe(sourcemaps.init())
   .pipe(sass({indentedSyntax: true}))
