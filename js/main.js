@@ -56,6 +56,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
                     <td>${ cur.name }</td>
                     <td>${ formatNum( cur.market_cap_usd ) }</td>
                     <td>${ formatNum( cur.price_usd ) }</td>
+                    <td>${ c20Index[coin] }%</td>
                     <td>${ calculateInvestment( c20Index[coin] ) }</td>
             `;
             tbody.appendChild( tr )
