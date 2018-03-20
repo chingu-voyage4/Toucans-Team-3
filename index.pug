@@ -29,8 +29,7 @@ section
       <a class="nav-item nav-link" href="#">Subscribe</a>
   
 //- Section 2 - Text intro
-section
-.slider
+section.slider
   input.slider__nav(type='radio', name='slider', title='slide1', checked='checked')
   input.slider__nav(type='radio', name='slider', title='slide2')
   input.slider__nav(type='radio', name='slider', title='slide3')
@@ -60,10 +59,13 @@ section
 //- Section 3 - User input
 section
   form(class='invest-form')
-    input(type="number" class='invest-input' min='500' placeholder="Amount to invest")
-    button.btn(type="submit") Submit
-
-
+    //- .col-xs-4.col-sm-4
+    .input-group.col-xs-6.col-md-8.col-xl-5
+      .input-group-prepend 
+        span.input-group-text $
+      input(type="number" class='form-control invest-input' min='500' placeholder="Amount to invest")
+      .input-group-append
+        button.btn(type="submit") Submit
 
 //- Section 4 - table
 section.table-responsive
@@ -82,8 +84,6 @@ section.table-responsive
 section
   p(class='footer') © 2018 Made By 
     a(href='https://github.com/chingu-voyage4/Toucans-Team-3') Toucon-Team-3
-
-
 
 
 script(src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous")
