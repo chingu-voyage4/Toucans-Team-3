@@ -9,24 +9,24 @@ document.addEventListener( 'DOMContentLoaded', () => {
                             3.8, 3.4, 2.1, 1.7, 1.5, 
                             1.5, 1.2, 1.2, 0.9, 0.9 ];
 
+    const c20Url = 'https://api.coinmarketcap.com/v1/ticker/?limit=20';
 
+    const newsUrl = 'https://min-api.cryptocompare.com/data/news/?categories=';
+
+    // number of news articles to show
+    const newsLimit = 20;
 
     // ===== Put all DOM targetting here ===== //
     const currencyTable = document.querySelector( '.currency-table' );
     const form          = document.querySelector( '.invest-form' );
     const input         = document.querySelector( '.invest-input' );
+    const newsTable = document.querySelector( '.news-table' );
 
 
     // ===== DOM Listeners ===== // 
     form.addEventListener( 'submit', ( e ) => submitForm( e ) )
 
-
-
-
-    getData( 'https://api.coinmarketcap.com/v1/ticker/?limit=20' )
-        .then( res => buildTable( res ) )
-
-
+    getData(c20Url).then( res => buildTable( res ) )
     
     /**
      * 
@@ -38,6 +38,34 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 .then( res => res.json() )
     }; 
 
+    function showNews(articles) {
+        let articlesSample = articles.slice(0, newsLimit);     
+        let tbody = document.createElement( 'tbody' );
+        articlesSample.forEach((info) => {
+            let tr = document.createElement( 'tr' );
+            tr.innerHTML = `
+            <td><img src="${info.imageurl}" title=${info.title}" alt="news"/></td>
+            <td><p></p><a href="${info.url}">${info.title}</a></p>
+            <p>${info.body}</p></td>
+            `;
+            newsTable.appendChild(tr);
+        })
+    }
+
+    /** 
+     * construct news based on top 20 crypto
+     * @param {currSymbol} Array currencysymbols
+     * eg: ['BTC', 'ETH']
+    */
+    function getNews(currSymbols) {
+        let currString = currSymbols.join(",");
+        
+        fetchUrl = newsUrl.concat(currString);
+        console.log(fetchUrl);
+
+        getData(fetchUrl).then(res => showNews(res));
+    }
+
     /**
      * 
      * @param {currencies} Array array of currencies data  
@@ -45,11 +73,13 @@ document.addEventListener( 'DOMContentLoaded', () => {
     function buildTable( currencies ) {
         // Add fiat to thead
         document.querySelectorAll('.fiat').forEach((item) => item.textContent = ` (${fiat[1]})`);
-       
+        
         allCurrencies = currencies;
+        
         let tbody = document.createElement( 'tbody' );
+        let currSymbols = [];
         currencies.forEach( ( cur, coin ) => {
-
+            currSymbols.push(cur.symbol);
             let tr = document.createElement( 'tr' );
             tr.innerHTML = `
                     <td>${ cur.rank }</td>
@@ -58,9 +88,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
                     <td>${ formatNum( cur.price_usd ) }</td>
                     <td>${ calculateInvestment( c20Index[coin] ) }</td>
             `;
-            tbody.appendChild( tr )
-            
-        } )
+            tbody.appendChild( tr )      
+        });
+        getNews(currSymbols);
         currencyTable.appendChild( tbody )
     };
 
