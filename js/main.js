@@ -14,7 +14,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const newsUrl = 'https://min-api.cryptocompare.com/data/news/?categories=';
 
     // number of news articles to show
-    const newsLimit = 20;
+    const newsLimit = 5;
 
     // ===== Put all DOM targetting here ===== //
     const currencyTable = document.querySelector( '.currency-table' );
@@ -29,7 +29,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
     getData(c20Url).then( res => {
         buildTable( res );
         chart.getChartData( res );
-     } )
+    } )
     
     /**
      * 
@@ -43,17 +43,26 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     
     function showNews(articles) {
-        let articlesSample = articles.slice(0, newsLimit);     
+        let articlesSample = articles.slice(0, newsLimit);  
         let tbody = document.createElement( 'tbody' );
+        tbody.setAttribute("id", "newstable");
+ 
+        // if newstable is already present, clear before
+        // appending
+        let newsBody = document.querySelector('#newstable');
+        if (newsBody !== null) {
+            newsBody.innerHTML = '';
+        }
+ 
         articlesSample.forEach((info) => {
             let tr = document.createElement( 'tr' );
             tr.innerHTML = `
-            <td><img src="${info.imageurl}" title=${info.title}" alt="news"/></td>
-            <td><p></p><a href="${info.url}">${info.title}</a></p>
-            <p>${info.body}</p></td>
+            <td><a class="font-weight-bold" href="${info.url}">${info.title}</a> <p>${info.source}</p>
+            </td>
             `;
-            newsTable.appendChild(tr);
+            tbody.appendChild( tr );
         })
+        newsTable.appendChild( tbody );
     }
 
     /** 

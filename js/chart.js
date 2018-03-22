@@ -63,4 +63,3 @@ const chart = ( function () {
         getChartData
     }
 } )()
-
