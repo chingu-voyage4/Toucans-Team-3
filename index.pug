@@ -63,7 +63,7 @@ section
     //- .col-xs-4.col-sm-4
     .input-group.col-xs-6.col-md-8.col-xl-5
       .input-group-prepend 
-        span.input-group-text $
+        span.input-group-text.font-weight-bold $
       input(type="number" class='form-control invest-input' min='500' placeholder="Amount to invest")
       .input-group-append
         button.btn(type="submit") Submit
@@ -89,12 +89,9 @@ section
 
 //- Section 6 - news
 section
+  h2#latest-news Latest News
   table(class='table table-borderless news-table')
-      thead(class='thead-grey')
-        tr 
-          th 
-            h2 News
-          th
+
 
 //- Section 7 - footer
 section

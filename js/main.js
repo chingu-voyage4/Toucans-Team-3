@@ -56,9 +56,8 @@ document.addEventListener( 'DOMContentLoaded', () => {
         articlesSample.forEach((info) => {
             let tr = document.createElement( 'tr' );
             tr.innerHTML = `
-            <td><img src="${info.imageurl}" title=${info.title}" alt="news"/></td>
-            <td><p></p><a href="${info.url}">${info.title}</a></p>
-            <p>${info.body}</p></td>
+            <td><a class="font-weight-bold" href="${info.url}">${info.title}</a> <p>${info.source}</p>
+            </td>
             `;
             tbody.appendChild( tr );
         })
