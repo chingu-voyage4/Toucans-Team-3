@@ -26,7 +26,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
     // ===== DOM Listeners ===== // 
     form.addEventListener( 'submit', ( e ) => submitForm( e ) )
 
-    getData(c20Url).then( res => buildTable( res ) )
+    getData(c20Url).then( res => {
+        buildTable( res );
+        chart.getChartData( res );
+    } )
     
     /**
      * 
