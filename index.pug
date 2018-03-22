@@ -8,6 +8,7 @@ html(lang="en")
     meta(name="description" content="")
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous")
     link(rel="stylesheet" href="css/main.min.css")
+    script(defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js")
     script(defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js")
     //[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> <![endif]
 
@@ -90,7 +91,11 @@ section
             h2 News
           th
 
-//- Section 6 - footer
+//- Section 6 - Chart
+section
+  canvas(id='currency-chart')
+
+//- Section 7 - footer
 section
   p(class='footer') © 2018 Made By 
     a(href='https://github.com/chingu-voyage4/Toucans-Team-3') Toucon-Team-3

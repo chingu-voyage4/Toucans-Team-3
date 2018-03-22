@@ -20,13 +20,16 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const currencyTable = document.querySelector( '.currency-table' );
     const form          = document.querySelector( '.invest-form' );
     const input         = document.querySelector( '.invest-input' );
-    const newsTable = document.querySelector( '.news-table' );
+    const newsTable     = document.querySelector( '.news-table' );
 
 
     // ===== DOM Listeners ===== // 
     form.addEventListener( 'submit', ( e ) => submitForm( e ) )
 
-    getData(c20Url).then( res => buildTable( res ) )
+    getData(c20Url).then( res => {
+        buildTable( res );
+        chart.getChartData( res );
+     } )
     
     /**
      * 
@@ -38,6 +41,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
                 .then( res => res.json() )
     }; 
 
+    
     function showNews(articles) {
         let articlesSample = articles.slice(0, newsLimit);     
         let tbody = document.createElement( 'tbody' );
