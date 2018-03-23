@@ -59,28 +59,33 @@ section.slider
 
 //- Section 3 - User input
 section
-  form(class='invest-form')
-    //- .col-xs-4.col-sm-4
-    .input-group.col-xs-6.col-md-8.col-xl-5
-      .input-group-prepend 
-        span.input-group-text.font-weight-bold $
-      input(type="number" class='form-control invest-input' min='500' placeholder="Amount to invest")
-      .input-group-append
-        button.btn(type="submit") Submit
+  .container
+    .row
+     .col-md-6.pt-5.mx-auto
+      form(class='invest-form')
+        .input-group
+          .input-group-prepend 
+            span.input-group-text.font-weight-bold $
+          input(type="number" class='form-control invest-input' min='500' placeholder="Amount to invest")
+          .input-group-append
+            button.btn(type="submit") Submit
 
 //- Section 4 - table
-section.table-responsive
-  table(class='table table-hover table-bordered currency-table')
-    thead(class='thead-grey')
-      tr
-        th Rank
-        th Coin Name
-        th Market Cap
-          span.fiat
-        th Price
-          span.fiat
-        th %
-        th Amount to Buy
+section
+  .container
+    .row
+      .col-12.pt-5.table-responsive
+        table(class='table table-hover table-bordered currency-table')
+          thead(class='thead-grey')
+            tr
+              th Rank
+              th Coin Name
+              th Market Cap
+                span.fiat
+              th Price
+                span.fiat
+              th %
+              th Amount to Buy
 
 //- Section 5 - chart
 section
@@ -92,8 +97,11 @@ section
 
 //- Section 6 - news
 section
-  h2#latest-news Latest News
-  table(class='table table-borderless news-table')
+  .container
+    .row
+      .col-12.pt-5
+        h2#latest-news Latest News
+        table(class='table table-borderless news-table')
 
 //- Section 7 - footer
 section
