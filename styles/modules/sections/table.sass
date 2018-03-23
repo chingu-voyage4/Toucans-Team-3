@@ -17,9 +17,12 @@ $theme-blue: #4717F6
 .news-table td
   padding: 0.25rem
 
-.currchart
-  width: 80%
-
 .currency-table tbody tr:hover td, .table tbody tr:hover th 
   background-color: $theme-blue
 
+.curr-chart
+  min-height: 75vh
+
+@media screen and (max-width: 600px)
+  .curr-chart
+    min-height: 50vh
