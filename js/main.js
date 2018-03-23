@@ -9,12 +9,14 @@ document.addEventListener( 'DOMContentLoaded', () => {
                             3.8, 3.4, 2.1, 1.7, 1.5, 
                             1.5, 1.2, 1.2, 0.9, 0.9 ];
 
-    const c20Url = 'https://api.coinmarketcap.com/v1/ticker/?limit=20';
-
+    const c20Url  = 'https://api.coinmarketcap.com/v1/ticker/?limit=20';
     const newsUrl = 'https://min-api.cryptocompare.com/data/news/?categories=';
 
     // number of news articles to show
     const newsLimit = 5;
+
+    // ===== News Interval ===== //
+    let newsInterval;
 
     // ===== Put all DOM targetting here ===== //
     const currencyTable = document.querySelector( '.currency-table' );
@@ -74,7 +76,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
         let currString = currSymbols.join(",");
         
         fetchUrl = newsUrl.concat(currString);
-        console.log(fetchUrl);
 
         getData(fetchUrl).then(res => showNews(res));
     }
@@ -104,8 +105,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
             `;
             tbody.appendChild( tr )      
         });
+        currencyTable.appendChild( tbody );
         getNews(currSymbols);
-        currencyTable.appendChild( tbody )
+        if( newsInterval ) clearInterval( newsInterval );
+        newsInterval =  setInterval( () => getNews( currSymbols ), 120000 );        
     };
 
 
