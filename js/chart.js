@@ -18,10 +18,15 @@ const chart = ( function () {
             res.forEach( ( data, index ) => {
                 let closingPrices = [];
                 data.Data.forEach( d => closingPrices.push( d.close ) )
+                let lineColor = getRandomColor()
                 datasets.push( {
                     label: currencies[index].symbol,
                     backgroundColor: 'transparent',
-                    borderColor: getRandomColor(),
+                    borderColor: lineColor,
+                    borderWidth: 4.5,
+                    pointBackgroundColor: lineColor,
+                    pointRadius: 5,	
+                    pointHoverRadius: 8,
                     data: closingPrices,
                 } )
              } )
@@ -44,7 +49,10 @@ const chart = ( function () {
             },
     
             // Configuration options go here
-            options: {}
+            options: {
+                responsive:true,
+                maintainAspectRatio:false
+            }
         } )
     }
 
