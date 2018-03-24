@@ -7,8 +7,6 @@ const CurrencyTable = function ( global ) {
                             7.6, 5.4, 4.9, 4.3, 4, 
                             3.8, 3.4, 2.1, 1.7, 1.5, 
                             1.5, 1.2, 1.2, 0.9, 0.9 ];
-    // ===== News Interval ===== //
-    let newsInterval;
 
 
     /**
@@ -38,8 +36,7 @@ const CurrencyTable = function ( global ) {
         });
         global.currencyTable.appendChild( tbody );
         global.getNews(currSymbols);
-        if( newsInterval ) clearInterval( newsInterval );
-        newsInterval =  setInterval( () => global.getNews( currSymbols ), 120000 );        
+        global.currencySymbol = currSymbols;   
     };
 
 
