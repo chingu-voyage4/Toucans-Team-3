@@ -5,6 +5,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     const c20Url  = 'https://api.coinmarketcap.com/v1/ticker/?limit=20';
     const newsUrl = 'https://min-api.cryptocompare.com/data/news/?categories=';
+    let currencySymbols = [];
 
     // number of news articles to show
     const newsLimit = 5;
@@ -14,13 +15,17 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const form          = document.querySelector( '.invest-form' );
     const input         = document.querySelector( '.invest-input' );
     const newsTable     = document.querySelector( '.news-table' );
+    const refreshButton = document.querySelector( '.refresh-icon' );
 
 
     // ===== this variable holds all the functions for currency table ===== //
-    const Currency = CurrencyTable( { form, input, currencyTable, getNews } );
+    const Currency = CurrencyTable( { form, input, currencyTable, getNews, currencySymbols } );
 
     // ===== DOM Listeners ===== // 
-    form.addEventListener( 'submit', ( e ) => submitForm( e ) )
+    form.addEventListener( 'submit', ( e ) => submitForm( e ) );
+    refreshButton.addEventListener( 'click', () => getNews( currencySymbols ) )
+
+
 
     getData(c20Url).then( res => {
         Currency.buildTable( res );
@@ -41,13 +46,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
     function showNews(articles) {
         let articlesSample = articles.slice(0, newsLimit);  
         let tbody = document.createElement( 'tbody' );
-        tbody.setAttribute("id", "newstable");
  
         // if newstable is already present, clear before
         // appending
-        let newsBody = document.querySelector('#newstable');
-        if (newsBody !== null) {
-            newsBody.innerHTML = '';
+        if (newsTable !== null) {
+            newsTable.innerHTML = '';
         }
  
         articlesSample.forEach((info) => {
