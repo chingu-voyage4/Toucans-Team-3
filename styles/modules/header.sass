@@ -1,10 +1,10 @@
-$theme-blue: #4717F6
+@import 'styles/variables'
 
 .slider
   background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url("../img/carousel-header.jpg") no-repeat 
   background-size: cover
   background-position: center top
-  color: white
+  color: $light-color
   height: 75%
   position: relative
   overflow: hidden
@@ -58,7 +58,7 @@ $theme-blue: #4717F6
 
 .slider__image
   font-size: 4.5rem
-  color: $theme-blue
+  color: $primary-color
 
 .slider__caption
   font-weight: 500
