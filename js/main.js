@@ -9,6 +9,8 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     // number of news articles to show
     const newsLimit = 5;
+    let firstArticle = 0;
+    let lastArticle = newsLimit;
 
     // ===== Put all DOM targetting here ===== //
     const currencyTable = document.querySelector( '.currency-table' );
@@ -44,7 +46,16 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     
     function showNews(articles) {
-        let articlesSample = articles.slice(0, newsLimit);  
+        // If user refreshes news, pull new batch
+        // When user cycles 5 times, start again
+        if (lastArticle >= newsLimit * 5) {
+            firstArticle = 0;
+            lastArticle = newsLimit;
+        } else {
+            firstArticle += newsLimit;
+            lastArticle += newsLimit;
+        }
+        let articlesSample = articles.slice(firstArticle, lastArticle);  
         let tbody = document.createElement( 'tbody' );
  
         // if newstable is already present, clear before
