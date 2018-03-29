@@ -19,7 +19,7 @@ const chart = ( function () {
                     let closingPrices = [];
                     res.Data.forEach( d => {
                         closingPrices.push( d.close );
-                        labels.push( d.time )
+                        labels.push( parseDate( d.time ) )
                      } )
                     let lineColor = getRandomColor()
                     datasets.push( {
@@ -35,6 +35,22 @@ const chart = ( function () {
                 
                     buildChart();
                 } )
+    }
+
+
+    function parseDate( dateTime ) {
+
+        const dateString = new Date( dateTime * 1000 );
+        const monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+        const day = dateString.getDate();
+        const monthIndex = dateString.getMonth();
+        
+          return `${monthNames[monthIndex]} ${day}`;
     }
 
 
