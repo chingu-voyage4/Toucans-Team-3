@@ -5,22 +5,28 @@ const chart = ( function () {
     let datasets = [];
     
 
-    function getChartData ( chartData ){
+    function getChartData ( currency ){
 
-        let currencies = chartData.filter( ( cd, index ) => index <= 9 );
+        labels   = [];
+        datasets = [];
 
-        Promise.all( currencies.map( cd => {
-            return fetch( `https://cors-anywhere.herokuapp.com/https://min-api.cryptocompare.com/data/histoday?fsym=${cd.symbol}&tsym=USD&limit=6` )
+        // let currencies = chartData.filter( ( cd, index ) => index <= 9 );
+
+        // Promise.all( currencies.map( cd => {
+            return fetch( `https://cors-anywhere.herokuapp.com/https://min-api.cryptocompare.com/data/histoday?fsym=${currency}&tsym=USD&limit=6` )
                     .then( res => res.json() )
-        } ) )
+        // } ) )
         .then( res => {
 
-            res.forEach( ( data, index ) => {
+            // res.forEach( ( data, index ) => {
                 let closingPrices = [];
-                data.Data.forEach( d => closingPrices.push( d.close ) )
+                res.Data.forEach( d => {
+                    closingPrices.push( d.close );
+                    labels.push( d.time )
+                 } )
                 let lineColor = getRandomColor()
                 datasets.push( {
-                    label: currencies[index].symbol,
+                    label: currency,
                     backgroundColor: 'transparent',
                     borderColor: lineColor,
                     borderWidth: 4.5,
@@ -29,7 +35,8 @@ const chart = ( function () {
                     pointHoverRadius: 8,
                     data: closingPrices,
                 } )
-             } )
+                console.log( datasets)
+            //  } )
 
              buildChart();
         } )
