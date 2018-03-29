@@ -32,7 +32,11 @@ const CurrencyTable = function ( global ) {
                     <td>${ c20Index[coin] }%</td>
                     <td>${ calculateInvestment( c20Index[coin] ) }</td>
             `;
-            tbody.appendChild( tr )      
+            tbody.appendChild( tr )  
+            tr.addEventListener( 'click', () => {
+                document.getElementById( 'currency-chart' ).innerHTML = '';
+                global.chart.getChartData( cur.symbol ); 
+             } )    
         });
         global.currencyTable.appendChild( tbody );
         global.getNews(currSymbols);
