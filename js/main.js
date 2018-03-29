@@ -31,7 +31,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     getData(c20Url).then( res => {
         Currency.buildTable( res );
-        chart.getChartData( 'BTC' );
+        chart.getChartData( 'BTC', 'Bitcoin' );
     } )
     
     /**

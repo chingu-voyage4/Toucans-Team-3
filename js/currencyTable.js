@@ -8,6 +8,8 @@ const CurrencyTable = function ( global ) {
                             3.8, 3.4, 2.1, 1.7, 1.5, 
                             1.5, 1.2, 1.2, 0.9, 0.9 ];
 
+    const currencyChart = document.getElementById( 'currency-chart' );
+
 
     /**
      * 
@@ -32,10 +34,11 @@ const CurrencyTable = function ( global ) {
                     <td>${ c20Index[coin] }%</td>
                     <td>${ calculateInvestment( c20Index[coin] ) }</td>
             `;
+            tr.style.cursor = 'pointer';
             tbody.appendChild( tr )  
             tr.addEventListener( 'click', () => {
-                document.getElementById( 'currency-chart' ).innerHTML = '';
-                global.chart.getChartData( cur.symbol ); 
+                currencyChart.innerHTML = '';
+                global.chart.getChartData( cur.symbol, cur.name ); 
              } )    
         });
         global.currencyTable.appendChild( tbody );

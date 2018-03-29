@@ -5,41 +5,36 @@ const chart = ( function () {
     let datasets = [];
     
 
-    function getChartData ( currency ){
+    function getChartData ( curSymbol, curName ){
 
         labels   = [];
         datasets = [];
 
-        // let currencies = chartData.filter( ( cd, index ) => index <= 9 );
-
-        // Promise.all( currencies.map( cd => {
-            return fetch( `https://cors-anywhere.herokuapp.com/https://min-api.cryptocompare.com/data/histoday?fsym=${currency}&tsym=USD&limit=6` )
-                    .then( res => res.json() )
-        // } ) )
-        .then( res => {
-
-            // res.forEach( ( data, index ) => {
-                let closingPrices = [];
-                res.Data.forEach( d => {
-                    closingPrices.push( d.close );
-                    labels.push( d.time )
-                 } )
-                let lineColor = getRandomColor()
-                datasets.push( {
-                    label: currency,
-                    backgroundColor: 'transparent',
-                    borderColor: lineColor,
-                    borderWidth: 4.5,
-                    pointBackgroundColor: lineColor,
-                    pointRadius: 5,	
-                    pointHoverRadius: 8,
-                    data: closingPrices,
+        return fetch( `https://cors-anywhere.herokuapp.com/https://min-api.cryptocompare.com/data/histoday?fsym=${curSymbol}&tsym=USD&limit=6` )
+                .then( res => res.json() )
+                .then( res => {
+                    
+                    // ===== Check for Empty Data ===== //
+                
+                    let closingPrices = [];
+                    res.Data.forEach( d => {
+                        closingPrices.push( d.close );
+                        labels.push( d.time )
+                     } )
+                    let lineColor = getRandomColor()
+                    datasets.push( {
+                        label: curName,
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgba( 0, 0, 0, 0.7)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#66ff66',
+                        pointRadius: 5,	
+                        pointHoverRadius: 8,
+                        data: closingPrices,
+                    } )
+                
+                    buildChart();
                 } )
-                console.log( datasets)
-            //  } )
-
-             buildChart();
-        } )
     }
 
 
@@ -58,7 +53,23 @@ const chart = ( function () {
             // Configuration options go here
             options: {
                 responsive:true,
-                maintainAspectRatio:false
+                maintainAspectRatio:false,
+                scales: {
+                    yAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Price in USD',
+                        fontSize: 20
+                      }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: 'Day',
+                          fontSize: 20
+                        }
+                      }]
+                  } 
             }
         } )
     }
