@@ -21,7 +21,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 
     // ===== this variable holds all the functions for currency table ===== //
-    const Currency = CurrencyTable( { form, input, currencyTable, getNews, currencySymbols } );
+    const Currency = CurrencyTable( { form, input, currencyTable, getNews, currencySymbols, chart } );
 
     // ===== DOM Listeners ===== // 
     form.addEventListener( 'submit', ( e ) => submitForm( e ) );
@@ -31,7 +31,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     getData(c20Url).then( res => {
         Currency.buildTable( res );
-        chart.getChartData( res );
+        chart.getChartData( 'BTC', 'Bitcoin' );
     } )
     
     /**
