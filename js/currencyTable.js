@@ -36,15 +36,28 @@ const CurrencyTable = function ( global ) {
             `;
             tr.style.cursor = 'pointer';
             tbody.appendChild( tr )  
-            tr.addEventListener( 'click', () => {
+
+            tr.addEventListener( 'click', ( e ) => {
+                showactiveRow( e );
                 currencyChart.innerHTML = '';
-                global.chart.getChartData( cur.symbol, cur.name ); 
+                global.chart.getChartData( cur.symbol, cur.name );
+                currencyChart.scrollIntoView( { behavior: 'smooth' } );
              } )    
+
         });
         global.currencyTable.appendChild( tbody );
         global.getNews(currSymbols);
         global.currencySymbol = currSymbols;   
     };
+
+
+    function showactiveRow( event ) {
+        let allActive = document.querySelectorAll( 'tr.active' )
+        for( let i = 0 ; i < allActive.length ; i ++ ){
+            allActive[i].classList.remove( 'active' );
+        }
+        event.target.parentNode.classList.add( 'active' );
+    }
 
 
     /**
