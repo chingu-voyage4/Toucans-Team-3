@@ -28,7 +28,7 @@ const CurrencyTable = function ( global ) {
             let tr = document.createElement( 'tr' );
             tr.innerHTML = `
                     <td>${ cur.rank }</td>
-                    <td>${ cur.name }</td>
+                    <td><span class="currency-name">${ cur.name}</span> <span class="currency-symbol"> ${cur.symbol} </span></td>
                     <td>${ formatNum( cur.market_cap_usd ) }</td>
                     <td>${ formatNum( cur.price_usd ) }</td>
                     <td>${ c20Index[coin] }%</td>
