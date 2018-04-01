@@ -52,7 +52,7 @@ const CurrencyTable = function ( global ) {
 
 
     function showactiveRow( event ) {
-        let allActive = document.querySelectorAll( 'tr.active' )
+        let allActive = document.querySelectorAll( 'tr.active' );
         for( let i = 0 ; i < allActive.length ; i ++ ){
             allActive[i].classList.remove( 'active' );
         }
