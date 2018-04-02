@@ -56,7 +56,10 @@ const CurrencyTable = function ( global ) {
         for( let i = 0 ; i < allActive.length ; i ++ ){
             allActive[i].classList.remove( 'active' );
         }
-        event.target.parentNode.classList.add( 'active' );
+        // event.target.parentNode.parentNode.classList.add( 'active' );
+        event.target.nodeName.toLowerCase() === 'span'
+            ?  event.target.parentNode.parentNode.classList.add( 'active' )
+            :  event.target.parentNode.classList.add( 'active' );
     }
 
 
