@@ -82,7 +82,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
     */
     function getNews(currSymbols) {
         let currString = currSymbols.join(",");
-        
+        refreshButton.children[0].classList.add('spin-animation');
+            setTimeout(function(){
+        	    refreshButton.children[0].classList.remove('spin-animation');
+            }, 500);
+
         fetchUrl = newsUrl.concat(currString);
 
         getData(fetchUrl).then(res => showNews(res));
