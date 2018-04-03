@@ -16,20 +16,7 @@ html(lang="en")
 
 body.body-container.text-center
 
-//- Section 1 - nav
-section
-  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-   .container
-    button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
-      span.navbar-toggler-icon
-    .collapse.navbar-collapse#navbarText
-      ul.navbar-nav.mr-auto
-        li.nav-item.active
-          a(class="nav-link" href="#") Cryptex 
-          span.sr-only
-      a(class="nav-item nav-link" href="#") Subscribe
-  
-//- Section 2 - Text intro
+//- Section 1 - Text intro
 section.slider
   input.slider__nav(type='radio', name='slider', title='slide1', checked='checked')
   input.slider__nav(type='radio', name='slider', title='slide2')
@@ -56,6 +43,19 @@ section.slider
       h2.slider__caption What is an Index Fund?
       p.slider__txt
         | An investment fund that replicates the performance of a given index of stocks, such as the NASDAQ.
+
+//- Section 2 - nav
+section
+nav#nav-main
+  ul
+    li.logo 
+      a(href="#") Cryptex.
+    li
+      a(href="#") Index
+    li
+      a(href="#") Charts
+    li
+      a(href="#") News
 
 //- Section 3 - User input
 section
