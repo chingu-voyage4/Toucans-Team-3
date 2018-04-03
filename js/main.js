@@ -39,7 +39,6 @@ document.addEventListener( 'DOMContentLoaded', () => {
     } )
 
 
-
     function fixNav() {
         if (window.scrollY >= topOfNav) {
             document.body.style.paddingTop = nav.offsetHeight + 'px';

@@ -17,7 +17,7 @@ html(lang="en")
 body.body-container.text-center
 
 //- Section 1 - Text intro
-section.slider
+section.slider#home
   input.slider__nav(type='radio', name='slider', title='slide1', checked='checked')
   input.slider__nav(type='radio', name='slider', title='slide2')
   input.slider__nav(type='radio', name='slider', title='slide3')
@@ -49,13 +49,13 @@ section
 nav#nav-main
   ul
     li.logo 
-      a(href="#") Cryptex.
+      a(href="#home") Cryptex.
     li
-      a(href="#") Index
+      a(href="#index") Index
     li
-      a(href="#") Charts
+      a(href="#charts") Charts
     li
-      a(href="#") News
+      a(href="#news") News
 
 //- Section 3 - User input
 section
@@ -71,7 +71,7 @@ section
             button.btn(type="submit") Submit
 
 //- Section 4 - table
-section
+section#index
   .container
     .row
       .col-12.pt-5.table-responsive
@@ -88,7 +88,7 @@ section
               th Amount to Buy
 
 //- Section 5 - chart
-section
+section#charts
   .container
     .row
       .col-12.pt-5.curr-chart
@@ -96,7 +96,7 @@ section
 
 
 //- Section 6 - news
-section
+section#news
   .container
     .row
       .col-12.pt-5
