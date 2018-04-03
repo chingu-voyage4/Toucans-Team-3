@@ -19,6 +19,8 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const newsTable     = document.querySelector( '.news-table' );
     const refreshButton = document.querySelector( '.refresh-icon' );
     const nav           = document.querySelector('#nav-main');
+    const topOfNav      = nav.offsetTop;
+    
 
 
     // ===== this variable holds all the functions for currency table ===== //
@@ -38,18 +40,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 
 
-function fixNav() {
-    const topOfNav      = nav.offsetTop;
-
-
-    if (window.scrollY >= topOfNav) {
-        document.body.style.paddingTop = nav.offsetHeight + 'px';
-        document.body.classList.add('fixed-nav');
-    } else {
-        document.body.style.paddingTop = 0;
-        document.body.classList.remove('fixed-nav');
-    }            
-}
+    function fixNav() {
+        if (window.scrollY >= topOfNav) {
+            document.body.style.paddingTop = nav.offsetHeight + 'px';
+            document.body.classList.add('fixed-nav');
+        } else {
+            document.body.style.paddingTop = 0;
+            document.body.classList.remove('fixed-nav');
+        }            
+    }
 
     
     /**
