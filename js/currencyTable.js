@@ -47,13 +47,11 @@ const CurrencyTable = function ( global ) {
                 currencyChart.innerHTML = '';
                 global.chart.getChartData( cur.symbol, cur.name );
              } )    
-
         });
         global.currencyTable.appendChild( tbody );
         global.getNews(currSymbols);
         global.currencySymbol = currSymbols;   
     };
-
 
     function showactiveRow( event ) {
         let allActive = document.querySelectorAll( 'tr.active' );
@@ -100,7 +98,7 @@ const CurrencyTable = function ( global ) {
     function calculateInvestment( value ) {
         // ===== Need to figure out the calculations here ===== //
         let amount = investAmount * value / 100;
-        investAmount = investAmount - amount;
+        // investAmount = investAmount - amount;
         return formatNum( amount ); 
     }
 
