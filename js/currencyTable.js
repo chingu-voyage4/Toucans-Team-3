@@ -40,6 +40,9 @@ const CurrencyTable = function ( global ) {
             tbody.appendChild( tr )  
 
             tr.addEventListener( 'click', ( e ) => {
+                if (!tr.classList.contains('active')) {
+                    currencyChart.scrollIntoView( { behavior: 'smooth' } );
+                }
                 showactiveRow( e );
                 currencyChart.innerHTML = '';
                 global.chart.getChartData( cur.symbol, cur.name );
