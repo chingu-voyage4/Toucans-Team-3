@@ -26,30 +26,32 @@ const CurrencyTable = function ( global ) {
         currencies.forEach( ( cur, coin ) => {
             currSymbols.push(cur.symbol);
             let tr = document.createElement( 'tr' );
+  
+            
             tr.innerHTML = `
                     <td>${ cur.rank }</td>
                     <td><span class="currency-name">${ cur.name}</span> <span class="currency-symbol"> ${cur.symbol} </span></td>
                     <td>${ formatNum( cur.market_cap_usd ) }</td>
                     <td>${ formatNum( cur.price_usd ) }</td>
                     <td>${ c20Index[coin] }%</td>
-                    <td>${ calculateInvestment( c20Index[coin] ) }</td>
+                    <td>${ calculateInvestment( c20Index[coin] ) }<br><span class='coin-output'>  (฿${ (investAmount * c20Index[coin] / 100) / cur.price_usd})</span></td>
             `;
             tr.style.cursor = 'pointer';
             tbody.appendChild( tr )  
 
             tr.addEventListener( 'click', ( e ) => {
+                if (!tr.classList.contains('active')) {
+                    currencyChart.scrollIntoView( { behavior: 'smooth' } );
+                }
                 showactiveRow( e );
                 currencyChart.innerHTML = '';
-                global.chart.getChartData( cur.symbol, cur.name );
-                currencyChart.scrollIntoView( { behavior: 'smooth' } );
-             } )    
-
+                global.chart.getChartData( cur.symbol, cur.name );                
+             } )  
         });
         global.currencyTable.appendChild( tbody );
         global.getNews(currSymbols);
         global.currencySymbol = currSymbols;   
     };
-
 
     function showactiveRow( event ) {
         let allActive = document.querySelectorAll( 'tr.active' );
@@ -96,7 +98,6 @@ const CurrencyTable = function ( global ) {
     function calculateInvestment( value ) {
         // ===== Need to figure out the calculations here ===== //
         let amount = investAmount * value / 100;
-        investAmount = investAmount - amount;
         return formatNum( amount ); 
     }
 
