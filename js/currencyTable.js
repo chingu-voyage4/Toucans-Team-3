@@ -7,8 +7,8 @@ const CurrencyTable = function ( global ) {
                             7.6, 5.4, 4.9, 4.3, 4, 
                             3.8, 3.4, 2.1, 1.7, 1.5, 
                             1.5, 1.2, 1.2, 0.9, 0.9 ];
-
-    const currencyChart = document.getElementById( 'currency-chart' );
+    
+    const currencyContainer = document.querySelector( '.curr-chart' );
 
 
     /**
@@ -40,11 +40,14 @@ const CurrencyTable = function ( global ) {
             tbody.appendChild( tr )  
 
             tr.addEventListener( 'click', ( e ) => {
+
+                const currencyChart = document.getElementById( 'currency-chart' );  
                 if (!tr.classList.contains('active')) {
                     currencyChart.scrollIntoView( { behavior: 'smooth' } );
                 }
                 showactiveRow( e );
-                currencyChart.innerHTML = '';
+                currencyContainer.innerHTML = '';
+                currencyContainer.innerHTML = `<canvas id="currency-chart"></canvas>`
                 global.chart.getChartData( cur.symbol, cur.name );                
              } )  
         });
@@ -58,7 +61,7 @@ const CurrencyTable = function ( global ) {
         for( let i = 0 ; i < allActive.length ; i ++ ){
             allActive[i].classList.remove( 'active' );
         }
-        // event.target.parentNode.parentNode.classList.add( 'active' );
+
         event.target.nodeName.toLowerCase() === 'span'
             ?  event.target.parentNode.parentNode.classList.add( 'active' )
             :  event.target.parentNode.classList.add( 'active' );
