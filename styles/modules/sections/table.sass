@@ -1,24 +1,22 @@
-$theme-blue: #4717F6
-  
-#latest-news
-  color: rgba(46,48,51,.9)
+@import 'styles/variables'
 
 .currency-table
-  background-color: rgba(46,48,51,.9)
-  color: #fff
+  background-color: $secondary-color
+  color: $light-color
+  tbody tr:hover td, .table tbody tr:hover th 
+    background-color: $primary-color
 
-.news-table
-  color: grey
+.active
+    background-color: $primary-color
 
-.news-table td
-  padding: 0.25rem
-
-.currency-table tbody tr:hover td, .table tbody tr:hover th 
-  background-color: $theme-blue
-
-.curr-chart
-  min-height: 75vh
+.currency-symbol
+        display: none
 
 @media screen and (max-width: 900px)
-  .curr-chart
-    min-height: 50vh
+    .currency-name
+        display: none
+    .currency-symbol
+        display: block
+
+.coin-output
+    color: #999

@@ -1,0 +1,40 @@
+@import 'styles/variables'
+  
+#latest-news
+  color: $secondary-color
+
+.news-table
+  color: $secondary-color
+  td
+    padding: 0.25rem
+
+@mixin animation-name($name)
+  animation-name: $name
+
+@mixin animation-duration($duration)
+  animation-duration: $duration
+
+@mixin animation-timing-function($func)
+  animation-timing-function: $func
+
+
+@mixin animation($name, $duration, $timing-func)
+  @include animation-name($name)
+  @include animation-duration($duration)
+  @include animation-timing-function($timing-func)
+
+
+@keyframes spin
+    to  
+      transform: rotate(360deg) 
+
+
+
+.refresh-icon
+  margin-left: 0.5rem
+  cursor: pointer
+  color: $primary-color
+
+.spin-animation
+  @include animation(spin, 0.5s, ease-in)
+    

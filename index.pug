@@ -11,24 +11,13 @@ html(lang="en")
     script(defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js")
     script(defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js")
     //[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script><script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> <![endif]
+    link(rel="shortcut icon" href="img/favicon.ico" type="image/x-icon")
+    link(rel="icon" href="img/favicon.ico" type="image/x-icon")
 
 body.body-container.text-center
 
-//- Section 1 - nav
-section
-  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-   .container
-    button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
-      span.navbar-toggler-icon
-    .collapse.navbar-collapse#navbarText
-      ul.navbar-nav.mr-auto
-        li.nav-item.active
-          a(class="nav-link" href="#") Cryptex 
-          span.sr-only
-      a(class="nav-item nav-link" href="#") Subscribe
-  
-//- Section 2 - Text intro
-section.slider
+//- Section 1 - Text intro
+section.slider#home
   input.slider__nav(type='radio', name='slider', title='slide1', checked='checked')
   input.slider__nav(type='radio', name='slider', title='slide2')
   input.slider__nav(type='radio', name='slider', title='slide3')
@@ -55,6 +44,19 @@ section.slider
       p.slider__txt
         | An investment fund that replicates the performance of a given index of stocks, such as the NASDAQ.
 
+//- Section 2 - nav
+section
+nav#nav-main
+  ul
+    li.logo 
+      a(href="#home") Cryptex.
+    li
+      a(href="#index") Index
+    li
+      a(href="#charts") Charts
+    li
+      a(href="#news") News
+
 //- Section 3 - User input
 section
   .container
@@ -64,16 +66,16 @@ section
         .input-group
           .input-group-prepend 
             span.input-group-text.font-weight-bold $
-          input(type="number" class='form-control invest-input' min='500' placeholder="Amount to invest")
+          input(type="number" class='form-control invest-input' min='500' placeholder="Amount to invest" step=".01")
           .input-group-append
             button.btn(type="submit") Submit
 
 //- Section 4 - table
-section
+section#index
   .container
     .row
       .col-12.pt-5.table-responsive
-        table.table.table-hover.table-bordered.currency-table
+        table.table.table-hover.table-bordered.currency-table.table-sm
           thead.thead-grey
             tr
               th Rank
@@ -86,7 +88,7 @@ section
               th Amount to Buy
 
 //- Section 5 - chart
-section
+section#charts
   .container
     .row
       .col-12.pt-5.curr-chart
@@ -94,11 +96,13 @@ section
 
 
 //- Section 6 - news
-section
+section#news
   .container
     .row
       .col-12.pt-5
-        h2#latest-news Latest News
+        h2#latest-news.d-flex.justify-content-center.align-items-center Latest News
+          span.refresh-icon
+            i.fas.fa-sync-alt.fa-sm
         table.table.table-borderless.news-table
 
 //- Section 7 - footer

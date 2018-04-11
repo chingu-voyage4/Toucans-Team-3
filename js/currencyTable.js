@@ -7,8 +7,8 @@ const CurrencyTable = function ( global ) {
                             7.6, 5.4, 4.9, 4.3, 4, 
                             3.8, 3.4, 2.1, 1.7, 1.5, 
                             1.5, 1.2, 1.2, 0.9, 0.9 ];
-    // ===== News Interval ===== //
-    let newsInterval;
+    
+    const currencyContainer = document.querySelector( '.curr-chart' );
 
 
     /**
@@ -26,21 +26,46 @@ const CurrencyTable = function ( global ) {
         currencies.forEach( ( cur, coin ) => {
             currSymbols.push(cur.symbol);
             let tr = document.createElement( 'tr' );
+  
+            
             tr.innerHTML = `
                     <td>${ cur.rank }</td>
-                    <td>${ cur.name }</td>
+                    <td><span class="currency-name">${ cur.name}</span> <span class="currency-symbol"> ${cur.symbol} </span></td>
                     <td>${ formatNum( cur.market_cap_usd ) }</td>
                     <td>${ formatNum( cur.price_usd ) }</td>
                     <td>${ c20Index[coin] }%</td>
-                    <td>${ calculateInvestment( c20Index[coin] ) }</td>
+                    <td>${ calculateInvestment( c20Index[coin] ) }<br><span class='coin-output'>  (฿${ (investAmount * c20Index[coin] / 100) / cur.price_usd})</span></td>
             `;
-            tbody.appendChild( tr )      
+            tr.style.cursor = 'pointer';
+            tbody.appendChild( tr )  
+
+            tr.addEventListener( 'click', ( e ) => {
+
+                const currencyChart = document.getElementById( 'currency-chart' );  
+                if (!tr.classList.contains('active')) {
+                    currencyChart.scrollIntoView( { behavior: 'smooth' } );
+                }
+                showactiveRow( e );
+                currencyContainer.innerHTML = '';
+                currencyContainer.innerHTML = `<canvas id="currency-chart"></canvas>`
+                global.chart.getChartData( cur.symbol, cur.name );                
+             } )  
         });
         global.currencyTable.appendChild( tbody );
         global.getNews(currSymbols);
-        if( newsInterval ) clearInterval( newsInterval );
-        newsInterval =  setInterval( () => global.getNews( currSymbols ), 120000 );        
+        global.currencySymbol = currSymbols;   
     };
+
+    function showactiveRow( event ) {
+        let allActive = document.querySelectorAll( 'tr.active' );
+        for( let i = 0 ; i < allActive.length ; i ++ ){
+            allActive[i].classList.remove( 'active' );
+        }
+
+        event.target.nodeName.toLowerCase() === 'span'
+            ?  event.target.parentNode.parentNode.classList.add( 'active' )
+            :  event.target.parentNode.classList.add( 'active' );
+    }
 
 
     /**
@@ -76,7 +101,6 @@ const CurrencyTable = function ( global ) {
     function calculateInvestment( value ) {
         // ===== Need to figure out the calculations here ===== //
         let amount = investAmount * value / 100;
-        investAmount = investAmount - amount;
         return formatNum( amount ); 
     }
 
