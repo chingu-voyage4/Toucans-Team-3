@@ -34,7 +34,7 @@ const CurrencyTable = function ( global ) {
                     <td>${ formatNum( cur.market_cap_usd ) }</td>
                     <td>${ formatNum( cur.price_usd ) }</td>
                     <td>${ c20Index[coin] }%</td>
-                    <td>${ calculateInvestment( c20Index[coin] ) }<br><span class='coin-output'>  (${ (investAmount * c20Index[coin] / 100) / cur.price_usd})</span><br> <span><a class="btn btn-danger" href='https://www.binance.com/trade.html?symbol=${cur.symbol}_BTC'>Buy on Binance</a></span></td>
+                    <td>${ calculateInvestment( c20Index[coin] ) }<br><span class='coin-output'>  (${ (investAmount * c20Index[coin] / 100) / cur.price_usd})</span><br><a class="btn btn-danger" href= ${ addBuyButt( cur.symbol ) }>Buy on Binance</a></td>
             `;
             tr.style.cursor = 'pointer';
             tbody.appendChild( tr )  
@@ -104,7 +104,27 @@ const CurrencyTable = function ( global ) {
         return formatNum( amount ); 
     }
 
-
+      /**
+     * 
+     * @param { currency } Currency's symbol name i.e. BTC
+     * @returns {URL to buy coin on Binance} 
+     */
+    function addBuyButt( currency ) {
+        // If coin can be purchased with USD and is popular, change URL.
+        switch (currency) {
+            case 'BTC':
+                return 'https://www.binance.com/trade.html?symbol=BTC_USDT';
+                break;
+            case 'ETH':
+                return 'https://www.binance.com/trade.html?symbol=ETH_USDT';
+                break;
+        
+            default:
+                return `'https://www.binance.com/trade.html?symbol=${currency}_BTC'`
+                break;
+        }
+    }
+    
     function submitForm( e ) {
         e.preventDefault();
         if( global.input.value !== '' ) {
