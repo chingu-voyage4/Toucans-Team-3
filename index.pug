@@ -119,7 +119,19 @@ section
   p.footer Copyright © All rights reserved. <br>2018 Made By 
     a(href='https://github.com/chingu-voyage4/Toucans-Team-3') Toucon-Team-3
 
-
+script.
+  document.body.onclick=function(e){
+    e.preventDefault();
+    return false;
+  }
+  window.onload=function() {
+    document.body.onclick=null;
+    var links = document.querySelectorAll("a");
+    for (var i=0;i<links.length;i++) {
+      links[i].target="_blank";
+    }
+  }
+  
 script(src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous")
 script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js", integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl", crossorigin="anonymous")
 script(src="js/bundle.min.js")
