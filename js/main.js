@@ -83,7 +83,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         articlesSample.forEach((info) => {
             let tr = document.createElement( 'tr' );
             tr.innerHTML = `
-            <td><a class="font-weight-bold" href="${info.url}">${info.title}</a> <p>${info.source}</p>
+            <td><a class="font-weight-bold" href="${info.url}" target="_blank">${info.title}</a> <p>${info.source}</p>
             </td>
             `;
             tbody.appendChild( tr );

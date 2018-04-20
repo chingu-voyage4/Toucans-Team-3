@@ -34,7 +34,7 @@ const CurrencyTable = function ( global ) {
                     <td>${ formatNum( cur.market_cap_usd ) }</td>
                     <td>${ formatNum( cur.price_usd ) }</td>
                     <td>${ c20Index[coin] }%</td>
-                    <td>${ calculateInvestment( c20Index[coin] ) }<br><span class='coin-output'>  (${ (investAmount * c20Index[coin] / 100) / cur.price_usd})</span><br><a class="btn btn-danger" href= ${ addBuyButt( cur.symbol ) }>Buy on Binance</a></td>
+                    <td>${ calculateInvestment( c20Index[coin] ) }<br><span class='coin-output'>  (${ (investAmount * c20Index[coin] / 100) / cur.price_usd})</span><br><a class="btn btn-danger" href= ${ addBuyButt( cur.symbol ) } target="_blank">Buy on Binance</a></td>
             `;
             tr.style.cursor = 'pointer';
             tbody.appendChild( tr )  
